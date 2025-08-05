@@ -1,0 +1,17 @@
+# -----------------------------------------------------------------------------
+# Script Name:    Bypass-Win11-Checks.ps1
+# Author:         mehmet ceylan tektek
+# Description:    Adds registry keys to bypass Windows 11 hardware checks
+# -----------------------------------------------------------------------------
+
+# Ensure the LabConfig registry key exists
+New-Item -Path "HKLM:\SYSTEM\Setup\LabConfig" -Force | Out-Null
+
+# Set bypass values
+Set-ItemProperty -Path "HKLM:\SYSTEM\Setup\LabConfig" -Name "BypassTPMCheck" -Type DWord -Value 1
+Set-ItemProperty -Path "HKLM:\SYSTEM\Setup\LabConfig" -Name "BypassSecureBootCheck" -Type DWord -Value 1
+Set-ItemProperty -Path "HKLM:\SYSTEM\Setup\LabConfig" -Name "BypassRAMCheck" -Type DWord -Value 1
+Set-ItemProperty -Path "HKLM:\SYSTEM\Setup\LabConfig" -Name "BypassCPUCheck" -Type DWord -Value 1
+Set-ItemProperty -Path "HKLM:\SYSTEM\Setup\LabConfig" -Name "BypassStorageCheck" -Type DWord -Value 1
+
+Write-Host "Windows 11 hardware checks bypassed successfully."
